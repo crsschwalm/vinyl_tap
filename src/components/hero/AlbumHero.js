@@ -1,27 +1,33 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(8, 2, 6),
   },
 }));
 
-const Hero = ({ heading = 'This is Vinyl Tap', description }) => {
+const AlbumHero = ({ heading, description, image, children }) => {
   const classes = useStyles();
   return (
     <div className={classes.heroContent}>
-      <Container maxWidth="sm" flex>
-        <Grid alignItems="center" justify="space-between">
+      <Grid container>
+        <img
+          alt="album artwork"
+          src={image}
+          style={{
+            maxWidth: '90%',
+            maxHeight: '200px',
+          }}
+        />
+        <Grid item>
           <Typography
             component="h1"
-            variant="h2"
-            align="center"
-            display="block"
+            variant="h4"
+            align="left"
             color="textPrimary"
             gutterBottom
           >
@@ -29,17 +35,19 @@ const Hero = ({ heading = 'This is Vinyl Tap', description }) => {
           </Typography>
 
           <Typography
-            variant="h5"
-            align="center"
-            color="textSecondary"
+            variant="subtitle1"
+            align="left"
+            color="textPrimary"
             paragraph
           >
             {description}
           </Typography>
+
+          {children}
         </Grid>
-      </Container>
+      </Grid>
     </div>
   );
 };
 
-export default Hero;
+export default AlbumHero;

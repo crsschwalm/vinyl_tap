@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
 const Copyright = () => (
   <Typography variant="body2" color="textSecondary" align="center">
     {'Copyright © '}
-    <Link color="inherit" href="https://material-ui.com/">
-      Your Website
+    <Link color="inherit" href="https://www.youtube.com/watch?v=4xgx4k83zzc">
+      SpinalTap
     </Link>{' '}
     {new Date().getFullYear()}
     {'.'}
@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <Typography variant="h6" align="center" gutterBottom>
-        Footer
+        The Tech!
       </Typography>
       <Typography
         variant="subtitle1"
@@ -34,7 +34,9 @@ const Footer = () => {
         color="textSecondary"
         component="p"
       >
-        Something here to give the footer a purpose!
+        This is Material UI styles, React Front-End, and Redux State manager.
+        The Data is interfaced via a REST API through the Serverless Framework
+        on AWS with DynamoDB Storage.
       </Typography>
       <Copyright />
     </footer>

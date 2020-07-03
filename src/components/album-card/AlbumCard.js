@@ -34,10 +34,10 @@ const AlbumCard = ({ heading, description, id, image }) => {
         <Typography>{description}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary" href={`/records/${id}`}>
+        <Button size="small" color="primary" href={`/view/${id}`}>
           View
         </Button>
-        <Button size="small" color="primary" href={`/records/edit/${id}`}>
+        <Button size="small" color="primary" href={`/edit/${id}`}>
           Edit
         </Button>
       </CardActions>
