@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TrackList = ({ tracks, onDelete }) => {
+const TrackList = ({ tracks }) => {
   const classes = useStyles();
 
   return (
@@ -29,11 +29,7 @@ const TrackList = ({ tracks, onDelete }) => {
       <div className={classes.listBackground}>
         <List>
           {tracks.map((track, i) => (
-            <Track
-              {...track}
-              onDelete={() => onDelete(track.track_number)}
-              key={i}
-            />
+            <Track {...track} key={i} />
           ))}
         </List>
       </div>

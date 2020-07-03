@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AlbumHero from '../components/hero/AlbumHero';
 import TrackList from '../components/track/TrackList';
 import GenreList from '../components/genre-list/GenreList';
+import EditFab from '../components/buttons/EditFab';
 import { sortTracks } from '../services/sort-tracks';
 
 const useStyles = makeStyles((theme) => ({
@@ -121,6 +122,7 @@ const View = ({ album = mockAlbum }) => {
           <TrackList tracks={sortedTracks}></TrackList>
         </Grid>
       </Container>
+      <EditFab id={album.id} />
     </>
   );
 };

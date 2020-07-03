@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GenreList = ({ genreItems = [], onDelete }) => {
+const GenreList = ({ genreItems = [] }) => {
   const classes = useStyles();
 
   return (
@@ -32,7 +32,7 @@ const GenreList = ({ genreItems = [], onDelete }) => {
       <ul className={classes.root}>
         {genreItems.map((item, i) => (
           <li key={i}>
-            <Chip className={classes.chip} {...item} onDelete={onDelete} />
+            <Chip className={classes.chip} {...item} />
           </li>
         ))}
       </ul>

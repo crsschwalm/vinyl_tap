@@ -15,8 +15,8 @@ const Hero = ({ heading = 'This is Vinyl Tap', description }) => {
   const classes = useStyles();
   return (
     <div className={classes.heroContent}>
-      <Container maxWidth="sm" flex>
-        <Grid alignItems="center" justify="space-between">
+      <Container maxWidth="sm">
+        <Grid>
           <Typography
             component="h1"
             variant="h2"

@@ -10,6 +10,7 @@ import { sortTracks } from '../services/sort-tracks';
 import AlbumFormGroup from '../components/album-form-group/AlbumFormGroup';
 import ButtonGroup from '../components/album-form-group/ButtonGroup';
 import GenreInput from '../components/genre-list/GenreInput';
+import DeleteFab from '../components/buttons/DeleteFab';
 
 const mockAlbum = {
   artists: [{ name: 'Passenger' }],
@@ -146,8 +147,8 @@ const Edit = ({
     <>
       <AlbumHero image={album.image} heading={album.name} description={artist}>
         <GenreList
-          onDelete={handleDeleteGenre}
-          genreItems={genres.map((genre) => ({
+          genreItems={genres.map((genre, i) => ({
+            onDelete: () => handleDeleteGenre(i),
             label: genre,
             color: 'secondary',
           }))}
@@ -161,8 +162,10 @@ const Edit = ({
             values={albumMetaData}
           />
           <TrackList
-            tracks={sortedTracks}
-            onDelete={handleDeleteTrack}
+            tracks={sortedTracks.map((track) => ({
+              onDelete: () => handleDeleteTrack(track.track_number),
+              ...track,
+            }))}
           ></TrackList>
           <TrackInputs onAdd={handleAddTrack} />
           <ButtonGroup
@@ -172,6 +175,7 @@ const Edit = ({
           />
         </Grid>
       </Container>
+      <DeleteFab id={album.id} />
     </>
   );
 };
