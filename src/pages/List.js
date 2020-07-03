@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import Hero from '../components/hero/Hero';
-import { fetchAlbums } from '../services/albums-slice';
+import { fetchAlbums } from '../services/all-albums-slice';
 import CreateFab from '../components/buttons/CreateFab';
 import AlbumCard from '../components/album-card/AlbumCard';
 
@@ -45,7 +45,7 @@ const List = () => {
               <AlbumCard
                 id={album.id}
                 heading={album.name}
-                description={album.artist}
+                description={album.artists}
                 image={album.image}
               />
             </Grid>

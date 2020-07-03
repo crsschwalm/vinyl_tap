@@ -19,6 +19,7 @@ const AlbumHero = ({ heading, description, image, children }) => {
           alt="album artwork"
           src={image}
           style={{
+            paddingRight: '50px',
             maxWidth: '90%',
             maxHeight: '200px',
           }}

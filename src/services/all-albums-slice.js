@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as albumAPI from './album-api';
+import { stringifyArtists } from './normalize-album';
 
 export const fetchAlbums = createAsyncThunk(
   'albums/fetchAlbums',
   albumAPI.getAlbums,
 );
 
-export const albumsSlice = createSlice({
+export const allAlbumsSlice = createSlice({
   name: 'albums',
   initialState: { list: [], loading: false, error: null },
   reducers: {},
@@ -19,7 +20,11 @@ export const albumsSlice = createSlice({
     [fetchAlbums.fulfilled]: (state, action) => {
       if (state.loading) {
         state.loading = false;
-        state.list = action.payload;
+        const albums = action.payload;
+        state.list = albums.map((album) => ({
+          ...album,
+          artists: stringifyArtists(album.artists),
+        }));
       }
     },
     [fetchAlbums.rejected]: (state, action) => {
@@ -31,4 +36,4 @@ export const albumsSlice = createSlice({
   },
 });
 
-export default albumsSlice.reducer;
+export default allAlbumsSlice.reducer;

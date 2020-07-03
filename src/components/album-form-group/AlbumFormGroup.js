@@ -14,8 +14,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AlbumFormGroup = ({ onChange, values }) => {
+const AlbumFormGroup = ({ onChange, values: { name, artists, image } }) => {
   const classes = useStyles();
+
+  const handleChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    onChange({ [key]: value });
+  };
 
   return (
     <div className={classes.container}>
@@ -25,8 +31,8 @@ const AlbumFormGroup = ({ onChange, values }) => {
         label="Name"
         type="name"
         variant="outlined"
-        onChange={onChange}
-        value={values.name}
+        onChange={handleChange}
+        value={name}
         placeholder="Placeholder"
         helperText="Required!"
         fullWidth
@@ -37,12 +43,12 @@ const AlbumFormGroup = ({ onChange, values }) => {
       />
       <div className={classes.secondRow}>
         <TextField
-          id="artist-input"
-          name="artist"
+          id="artists-input"
+          name="artists"
           label="Artist Name"
           type="name"
-          onChange={onChange}
-          value={values.artist}
+          onChange={handleChange}
+          value={artists}
           className={classes.baseTextField}
           style={{ flex: 1, paddingRight: 16, minWidth: '100px' }}
         />
@@ -51,8 +57,8 @@ const AlbumFormGroup = ({ onChange, values }) => {
           name="image"
           label="Image Url"
           type="url"
-          onChange={onChange}
-          value={values.image}
+          onChange={handleChange}
+          value={image}
           style={{ flex: 2, minWidth: '200px' }}
         />
       </div>

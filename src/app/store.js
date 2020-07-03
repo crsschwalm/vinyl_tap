@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import albumsReducer from '../services/albums-slice';
+import allAlbumsReducer from '../services/all-albums-slice';
+import albumReducer from '../services/album-slice';
 
 export default configureStore({
   reducer: {
-    albums: albumsReducer,
+    albums: allAlbumsReducer,
+    album: albumReducer,
   },
 });
