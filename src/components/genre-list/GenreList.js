@@ -22,6 +22,7 @@ const GenreList = ({ genreItems = [] }) => {
   return (
     <>
       <Typography
+        style={{ marginTop: 16 }}
         variant="subtitle1"
         align="left"
         color="textSecondary"

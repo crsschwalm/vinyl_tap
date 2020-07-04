@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as albumAPI from './album-api';
-import { stringifyArtists } from './normalize-album';
+import * as albumAPI from '../services/album-api';
+import { stringifyArtists } from '../services/normalize-album';
 
 export const fetchAlbums = createAsyncThunk(
   'albums/fetchAlbums',

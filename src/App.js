@@ -13,11 +13,13 @@ import List from './pages/List';
 import Edit from './pages/Edit';
 import View from './pages/View';
 import Create from './pages/Create';
+import Toast from './components/toast/toast';
 
 const App = () => {
   return (
     <Router>
       <CssBaseline />
+      <Toast />
       <Header />
       <main>
         <Switch>

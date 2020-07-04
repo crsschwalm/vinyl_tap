@@ -18,3 +18,17 @@ export const tracksByNumber = (a, b) => {
 
 export const stringifyArtists = (artists) =>
   artists.map(({ name }) => name).join(', ');
+
+export const makeAlbumSubmitable = ({
+  name,
+  image,
+  artists,
+  tracks,
+  genres,
+}) => ({
+  ...(!!name && { name }),
+  ...(!!image && { image }),
+  ...(!!artists && { artists: [{ name: artists }] }),
+  ...(!!tracks.length && { tracks }),
+  ...(!!genres.length && { genres }),
+});

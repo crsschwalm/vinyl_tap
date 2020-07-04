@@ -1,19 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as albumAPI from './album-api';
-import { normalizeTracks, stringifyArtists } from './normalize-album';
+import * as albumAPI from '../services/album-api';
+import { normalizeTracks, stringifyArtists } from '../services/normalize-album';
 
 export const fetchAlbum = createAsyncThunk(
   'album/fetchAlbum',
   albumAPI.getAlbumById,
 );
 
-export const postAlbum = createAsyncThunk(
-  'album/postAlbum',
+export const createAlbum = createAsyncThunk(
+  'album/createAlbum',
   albumAPI.createAlbum,
 );
 
-export const putAlbum = createAsyncThunk(
-  'album/putAlbum',
+export const updateAlbum = createAsyncThunk(
+  'album/updateAlbum',
   albumAPI.updateAlbum,
 );
 export const deleteAlbum = createAsyncThunk(
@@ -61,7 +61,9 @@ const albumSlice = createSlice({
       );
     },
 
-    clearState: (state) => (state.entry = initialEntryState),
+    clearState: (state) => {
+      state.entry = initialEntryState;
+    },
   },
   extraReducers: {
     [fetchAlbum.pending]: (state, _action) => {
@@ -86,26 +88,26 @@ const albumSlice = createSlice({
         console.log('failure');
       }
     },
-    [postAlbum.fulfilled]: (state, _action) => {
+    [createAlbum.fulfilled]: (state, _action) => {
       if (state.loading) {
         state.loading = false;
         console.log('success');
       }
     },
-    [postAlbum.rejected]: (state, action) => {
+    [createAlbum.rejected]: (state, action) => {
       if (state.loading) {
         state.loading = false;
         state.error = action.error;
         console.log('failure');
       }
     },
-    [putAlbum.fulfilled]: (state, _action) => {
+    [updateAlbum.fulfilled]: (state, _action) => {
       if (state.loading) {
         state.loading = false;
         console.log('success');
       }
     },
-    [putAlbum.rejected]: (state, action) => {
+    [updateAlbum.rejected]: (state, action) => {
       if (state.loading) {
         state.loading = false;
         state.error = action.error;

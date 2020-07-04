@@ -7,7 +7,8 @@ import TrackList from '../components/track/TrackList';
 import GenreList from '../components/genre-list/GenreList';
 import EditFab from '../components/buttons/EditFab';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAlbum } from '../services/album-slice';
+import { fetchAlbum } from '../state/album-slice';
+import { showToast } from '../state/slice-of-toast';
 
 const useStyles = makeStyles((theme) => ({
   accordion: {
@@ -36,10 +37,13 @@ const View = ({
   React.useEffect(() => {
     try {
       dispatch(fetchAlbum(id));
-      // showToast('success', `Fetched Albums`)
     } catch (err) {
-      console.warn('err :>> ', err);
-      // showToast('error', `Fetch failed: ${err.message}`)
+      dispatch(
+        showToast({
+          severity: 'error',
+          message: `Fetch failed: ${err.message}`,
+        }),
+      );
     }
   }, []);
 

@@ -65,6 +65,7 @@ const TrackInputs = ({ onAdd }) => {
           type="name"
           onChange={handleChange}
           value={state.name}
+          helperText="Required!"
         />
         <TextField
           id="duration_ms-input"

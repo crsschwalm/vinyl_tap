@@ -4,9 +4,10 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import Hero from '../components/hero/Hero';
-import { fetchAlbums } from '../services/all-albums-slice';
+import { fetchAlbums } from '../state/all-albums-slice';
 import CreateFab from '../components/buttons/CreateFab';
 import AlbumCard from '../components/album-card/AlbumCard';
+import { showToast } from '../state/slice-of-toast';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -25,10 +26,13 @@ const List = () => {
   React.useEffect(() => {
     try {
       dispatch(fetchAlbums());
-      // showToast('success', `Fetched Albums`)
     } catch (err) {
-      console.warn('err :>> ', err);
-      // showToast('error', `Fetch failed: ${err.message}`)
+      dispatch(
+        showToast({
+          severity: 'error',
+          message: `Fetch failed: ${err.message}`,
+        }),
+      );
     }
   }, []);
 

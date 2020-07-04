@@ -46,6 +46,7 @@ const AlbumFormGroup = ({ onChange, values: { name, artists, image } }) => {
           id="artists-input"
           name="artists"
           label="Artist Name"
+          helperText="Required!"
           type="name"
           onChange={handleChange}
           value={artists}
@@ -55,6 +56,7 @@ const AlbumFormGroup = ({ onChange, values: { name, artists, image } }) => {
         <TextField
           id="image-input"
           name="image"
+          helperText="optional"
           label="Image Url"
           type="url"
           onChange={handleChange}

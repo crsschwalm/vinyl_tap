@@ -2,6 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
 import TrackList from '../components/track/TrackList';
 import TrackInputs from '../components/track/TrackInputs';
 import AlbumHero from '../components/hero/AlbumHero';
@@ -18,8 +20,11 @@ import {
   addTrack,
   removeTrack,
   changeText,
-} from '../services/album-slice';
-import { useSelector, useDispatch } from 'react-redux';
+  deleteAlbum,
+  updateAlbum,
+} from '../state/album-slice';
+import { showToast } from '../state/slice-of-toast';
+import { makeAlbumSubmitable } from '../services/normalize-album';
 
 const Edit = ({
   match: {
@@ -27,28 +32,70 @@ const Edit = ({
   },
 }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { entry: album } = useSelector((state) => state.album);
+
+  const canSubmit = !!album.name && !!album.artists && album.tracks.length >= 0;
 
   React.useEffect(() => {
     try {
       dispatch(fetchAlbum(id));
-      // showToast('success', `Fetched Albums`)
     } catch (err) {
-      console.warn('err :>> ', err);
-      // showToast('error', `Fetch failed: ${err.message}`)
+      dispatch(
+        showToast({
+          severity: 'error',
+          message: `Fetch failed: ${err.message}`,
+        }),
+      );
     }
   }, []);
 
-  const history = useHistory();
-  const handleCancel = () => {
+  const headOut = () => {
     clearState();
     history.push('/');
   };
 
-  const handleSubmit = () => {
-    console.log('submitting :>> ', album);
+  const handleDelete = async () => {
+    try {
+      const request = await dispatch(deleteAlbum(id));
+      const response = await unwrapResult(request);
+
+      dispatch(
+        showToast({ severity: 'success', message: 'Deleted Successfully :)' }),
+      );
+      setTimeout(() => {
+        headOut();
+      }, 3000);
+    } catch (err) {
+      dispatch(
+        showToast({
+          severity: 'error',
+          message: `Delete failed: ${err.message}`,
+        }),
+      );
+    }
   };
 
+  const handleSubmit = async () => {
+    try {
+      const submission = makeAlbumSubmitable(album);
+      const request = await dispatch(updateAlbum(submission));
+      const response = await unwrapResult(request);
+      dispatch(
+        showToast({ severity: 'success', message: 'Updated Successfully :)' }),
+      );
+      setTimeout(() => {
+        headOut();
+      }, 3000);
+    } catch (err) {
+      dispatch(
+        showToast({
+          severity: 'error',
+          message: `Delete failed: ${err.message}`,
+        }),
+      );
+    }
+  };
   return (
     <>
       <AlbumHero
@@ -80,12 +127,12 @@ const Edit = ({
           <TrackInputs onAdd={(t) => dispatch(addTrack(t))} />
           <ButtonGroup
             onSubmit={handleSubmit}
-            onCancel={handleCancel}
-            canSubmit={!!album.name}
+            onCancel={headOut}
+            canSubmit={canSubmit}
           />
         </Grid>
       </Container>
-      <DeleteFab id={album.id} />
+      <DeleteFab handleDelete={handleDelete} />
     </>
   );
 };

@@ -11,15 +11,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Delete = ({ id }) => {
+const Delete = ({ handleDelete }) => {
   const classes = useStyles();
+
+  const handleClick = () => {
+    if (window.confirm('Do you really wanna delete this?')) {
+      handleDelete();
+    }
+  };
 
   return (
     <Fab
       className={classes.fab}
       color="primary"
       aria-label="add"
-      onClick={() => alert('you are going to delete this album')}
+      onClick={handleClick}
     >
       <DeleteIcon />
     </Fab>
