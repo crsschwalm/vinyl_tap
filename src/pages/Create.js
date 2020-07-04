@@ -50,7 +50,7 @@ const Create = () => {
       setTimeout(() => {
         dispatch(clearState());
         history.push(`/view/${response.id}`);
-      }, 3000);
+      }, 1000);
     } catch (err) {
       dispatch(
         showToast({

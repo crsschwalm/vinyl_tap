@@ -63,9 +63,7 @@ const Edit = ({
       dispatch(
         showToast({ severity: 'success', message: 'Deleted Successfully :)' }),
       );
-      setTimeout(() => {
-        headOut();
-      }, 3000);
+      setTimeout(headOut, 1000);
     } catch (err) {
       dispatch(
         showToast({
@@ -84,9 +82,7 @@ const Edit = ({
       dispatch(
         showToast({ severity: 'success', message: 'Updated Successfully :)' }),
       );
-      setTimeout(() => {
-        headOut();
-      }, 3000);
+      setTimeout(headOut, 1000);
     } catch (err) {
       dispatch(
         showToast({
