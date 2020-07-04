@@ -1,12 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Vinyl Tap 👨‍🎤⚡️
 
-## Available Scripts
+Front End app for managing Albums.
 
-In the project directory, you can run:
+- Create React App
+- Redux
+- Material UI
 
-### `yarn start`
+## Setup
 
-First! Set envs
+create your `.env` file
 
 ```
 PORT=4200
@@ -16,22 +18,21 @@ REACT_APP_API_URL=http://localhost:3000
 REACT_APP_STAGE=dev
 ```
 
+Try running alongside [the backend](https://github.com/crsschwalm/vinyl_tap_api) ==Note the **API_URL** should be the backend app==
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `yarn start`
+
 Runs the app in the development mode.<br />
 Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
 
-Try running alongside [the backend](https://github.com/crsschwalm/vinyl_tap_api)
-
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Builds the app for production to the `build` folder.
