@@ -6,11 +6,20 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+First! Set envs
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+PORT=4200
+# This points to the backend domain.
+REACT_APP_API_URL=http://localhost:3000
+# Correlates with backend api URL
+REACT_APP_STAGE=dev
+```
+
+Runs the app in the development mode.<br />
+Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
+
+Try running alongside [the backend](https://github.com/crsschwalm/vinyl_tap_api)
 
 ### `yarn test`
 
