@@ -9,6 +9,7 @@ import EditFab from '../components/buttons/EditFab';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAlbum } from '../state/album-slice';
 import { showToast } from '../state/slice-of-toast';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 const useStyles = makeStyles((theme) => ({
   accordion: {
@@ -35,16 +36,16 @@ const View = ({
   const { entry: album } = useSelector((state) => state.album);
 
   React.useEffect(() => {
-    try {
-      dispatch(fetchAlbum(id));
-    } catch (err) {
-      dispatch(
-        showToast({
-          severity: 'error',
-          message: `Fetch failed: ${err.message}`,
-        }),
-      );
-    }
+    dispatch(fetchAlbum(id))
+      .then(unwrapResult)
+      .catch((err) => {
+        dispatch(
+          showToast({
+            severity: 'error',
+            message: `Fetch failed: ${err.message}`,
+          }),
+        );
+      });
   }, []);
 
   const genreItems = album.genres.map((genre) => ({

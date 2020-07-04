@@ -8,6 +8,7 @@ import { fetchAlbums } from '../state/all-albums-slice';
 import CreateFab from '../components/buttons/CreateFab';
 import AlbumCard from '../components/album-card/AlbumCard';
 import { showToast } from '../state/slice-of-toast';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -24,16 +25,16 @@ const List = () => {
   });
 
   React.useEffect(() => {
-    try {
-      dispatch(fetchAlbums());
-    } catch (err) {
-      dispatch(
-        showToast({
-          severity: 'error',
-          message: `Fetch failed: ${err.message}`,
-        }),
-      );
-    }
+    dispatch(fetchAlbums())
+      .then(unwrapResult)
+      .catch((err) => {
+        dispatch(
+          showToast({
+            severity: 'error',
+            message: `Fetch failed: ${err.message}`,
+          }),
+        );
+      });
   }, []);
 
   return (

@@ -20,12 +20,14 @@ export const stringifyArtists = (artists) =>
   artists.map(({ name }) => name).join(', ');
 
 export const makeAlbumSubmitable = ({
+  id,
   name,
   image,
   artists,
   tracks,
   genres,
 }) => ({
+  ...(!!id && { id }),
   ...(!!name && { name }),
   ...(!!image && { image }),
   ...(!!artists && { artists: [{ name: artists }] }),

@@ -9,7 +9,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const Track = ({ name, duration_ms = 0, onDelete, explicit }) => {
-  const minutes = Math.round(duration_ms / 1000 / 60);
+  const minutes = Math.round(Number(duration_ms) / 1000 / 60);
 
   const secondaryText = `${minutes} min${explicit ? ` | EXPLICIT` : ''}`;
 

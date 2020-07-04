@@ -38,16 +38,16 @@ const Edit = ({
   const canSubmit = !!album.name && !!album.artists && album.tracks.length >= 0;
 
   React.useEffect(() => {
-    try {
-      dispatch(fetchAlbum(id));
-    } catch (err) {
-      dispatch(
-        showToast({
-          severity: 'error',
-          message: `Fetch failed: ${err.message}`,
-        }),
-      );
-    }
+    dispatch(fetchAlbum(id))
+      .then(unwrapResult)
+      .catch((err) => {
+        dispatch(
+          showToast({
+            severity: 'error',
+            message: `Fetch failed: ${err.message}`,
+          }),
+        );
+      });
   }, []);
 
   const headOut = () => {
@@ -58,7 +58,7 @@ const Edit = ({
   const handleDelete = async () => {
     try {
       const request = await dispatch(deleteAlbum(id));
-      const response = await unwrapResult(request);
+      await unwrapResult(request);
 
       dispatch(
         showToast({ severity: 'success', message: 'Deleted Successfully :)' }),
@@ -78,9 +78,9 @@ const Edit = ({
 
   const handleSubmit = async () => {
     try {
-      const submission = makeAlbumSubmitable(album);
+      const submission = makeAlbumSubmitable({ id, ...album });
       const request = await dispatch(updateAlbum(submission));
-      const response = await unwrapResult(request);
+      await unwrapResult(request);
       dispatch(
         showToast({ severity: 'success', message: 'Updated Successfully :)' }),
       );

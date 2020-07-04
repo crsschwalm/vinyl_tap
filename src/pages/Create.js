@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import TrackList from '../components/track/TrackList';
@@ -24,15 +23,7 @@ import { createAlbum } from '../state/album-slice';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { makeAlbumSubmitable } from '../services/normalize-album';
 
-const useStyles = makeStyles((theme) => ({
-  containerGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-}));
-
 const Create = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   React.useEffect(() => {

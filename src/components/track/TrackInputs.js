@@ -33,7 +33,7 @@ const TrackInputs = ({ onAdd }) => {
   const classes = useStyles();
   const defaultState = {
     name: '',
-    duration_ms: 0,
+    minutes: 0,
     explicit: false,
   };
 
@@ -48,7 +48,11 @@ const TrackInputs = ({ onAdd }) => {
   };
 
   const submit = () => {
-    onAdd(state);
+    onAdd({
+      name: state.name,
+      explicit: state.explicit,
+      duration_ms: state.minutes * 1000 * 60,
+    });
     onClear();
   };
 
@@ -68,12 +72,12 @@ const TrackInputs = ({ onAdd }) => {
           helperText="Required!"
         />
         <TextField
-          id="duration_ms-input"
-          name="duration_ms"
+          id="minutes-input"
+          name="minutes"
           label="Duration (min)"
           type="number"
           onChange={handleChange}
-          value={state.duration_ms}
+          value={state.minutes}
           className={classes.paddingLeft}
         />
         <FormControlLabel

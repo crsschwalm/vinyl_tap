@@ -85,46 +85,39 @@ const albumSlice = createSlice({
       if (state.loading) {
         state.loading = false;
         state.error = action.error;
-        console.log('failure');
       }
     },
     [createAlbum.fulfilled]: (state, _action) => {
       if (state.loading) {
         state.loading = false;
-        console.log('success');
       }
     },
     [createAlbum.rejected]: (state, action) => {
       if (state.loading) {
         state.loading = false;
         state.error = action.error;
-        console.log('failure');
       }
     },
     [updateAlbum.fulfilled]: (state, _action) => {
       if (state.loading) {
         state.loading = false;
-        console.log('success');
       }
     },
     [updateAlbum.rejected]: (state, action) => {
       if (state.loading) {
         state.loading = false;
         state.error = action.error;
-        console.log('failure');
       }
     },
     [deleteAlbum.fulfilled]: (state, _action) => {
       if (state.loading) {
         state.loading = false;
-        console.log('success');
       }
     },
     [deleteAlbum.rejected]: (state, action) => {
       if (state.loading) {
         state.loading = false;
         state.error = action.error;
-        console.log('failure');
       }
     },
   },
