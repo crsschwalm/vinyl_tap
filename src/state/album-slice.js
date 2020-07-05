@@ -21,21 +21,21 @@ export const deleteAlbum = createAsyncThunk(
   albumAPI.deleteAlbumById,
 );
 
-const initialEntryState = {
-  name: '',
-  artists: '',
-  image: '',
-  genres: [],
-  tracks: [],
+export const initialState = {
+  entry: {
+    name: '',
+    artists: '',
+    image: '',
+    genres: [],
+    tracks: [],
+  },
+  loading: false,
+  error: null,
 };
 
 const albumSlice = createSlice({
   name: 'album',
-  initialState: {
-    entry: initialEntryState,
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     changeText: (state, action) => {
       state.entry = { ...state.entry, ...action.payload };
@@ -62,7 +62,7 @@ const albumSlice = createSlice({
     },
 
     clearState: (state) => {
-      state.entry = initialEntryState;
+      state.entry = initialState.entry;
     },
   },
   extraReducers: {
