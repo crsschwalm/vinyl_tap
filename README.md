@@ -5,6 +5,7 @@ Front End app for managing Albums.
 - Create React App
 - Redux
 - Material UI
+- Deployed via Amplify web Console. [Check it out, Live!](https://master.d7nd22pvtnx2g.amplifyapp.com/)
 
 ## Setup
 
